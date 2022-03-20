@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Prosa Entrance Bot</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css'>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.2/iconfont/material-icons.min.css'><link rel="stylesheet" href="{{ url_for('static', path='/style.css') }}">
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div class="container">
+	<div class="row no-gutters">
+        <!-- Sebelah kanan (profile bot)-->
+        <div class="col-md-4 border-right">
+          <div style="position: sticky; top: 0;">
+              <img class="prosa-bot-image" src="{{ url_for('static', path='/logo_prosa_ai.png') }}" alt="Prosa img">
+              <p class = "text-center"><br>Prosa Entrance Bot<br> send Help to see command</p>
+          </div>
+        </div>
+        <!-- Sebelah kiri (chat room)/chatbox-->
+        <div class="col-md-8">
+            <div class="chat-panel">
+              <section id="chat-panel"></section>
+              <section id="bottom-chat"></section>
+            </div>
+        </div>
+        <div class="col-md-8" style="margin-top: -20px;margin-left: 380px;">
+          <form action="" onsubmit="sendMessage(event)" class="chat-box-tray">
+            <input type="text" placeholder="Type your message here..." id="textBox">
+            <button class="btn btn-default">Send</button>
+                <!-- <a href = "#textBox"></a> -->
+          </form>
+        </div>
+	</div>
+  </div>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script><script  src="{{ url_for('static', path='/script2.js') }}"></script>
+  <script>
+    var ws = new WebSocket("ws://localhost:8000/ws");
+    console.log(ws);
+    ws.onmessage = function(event) {
+        createBotChatBox(event.data.replaceAll("\n", "<br>"))
+        document.getElementById("bottom-chat").scrollIntoView();
+        document.getElementById('textBox').focus();
+    };
+    function sendMessage(event) {
+        var input = document.getElementById("textBox")
+        createUserChatBox(input.value)
+        ws.send(input.value)
+        input.value = ''
+        event.preventDefault()
+    }
+    createBotChatBox("Welcome to Prosa Entrance Bot!");
+  </script>
+
+</body>
+</html>
