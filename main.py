@@ -6,7 +6,7 @@ import asyncio
 
 app = FastAPI()
 chat = []
-afkTime = 5
+afkTime = 30
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
