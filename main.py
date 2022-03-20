@@ -1,14 +1,12 @@
-from fastapi import FastAPI, WebSocket, Request
+from fastapi import FastAPI, WebSocket, WebSocketDisconnect, Request
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
-from pydantic import BaseModel
-import time
 import asyncio
 
 app = FastAPI()
 chat = []
-afkTime = 1
+afkTime = 5
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
@@ -35,5 +33,8 @@ async def websocket_endpoint(websocket: WebSocket):
             print('timeout!')
             await websocket.send_text("host afk detected.\nconnection clossed.")
             await websocket.close()
+            break
+        except WebSocketDisconnect:
+            print("host closed!")
             break
     
