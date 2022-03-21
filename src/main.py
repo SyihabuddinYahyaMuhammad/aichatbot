@@ -6,12 +6,13 @@ from typing import Optional
 import asyncio
 import random
 import string
+from bot import getAproximateAnswer
 
 
 
 app = FastAPI()
 chat = []
-afkTime = 30
+afkTime = 300
 tokenId = "admin"
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
@@ -21,7 +22,7 @@ def balesanBot(chat):
     if chat.lower() == "help":
         return "Masukkan pertanyaan, dan bot akan berusaha menjawab"
     else:
-        return "Pertanyaan tidak dikenali"
+        return getAproximateAnswer(chat)
 
 def get_random_string():
     # choose from all lowercase letter
