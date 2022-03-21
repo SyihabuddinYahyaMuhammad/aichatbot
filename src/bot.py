@@ -12,7 +12,6 @@ with open(os.path.join(SETTINGS_DIR, "database/"+ "QA-pairs.csv"), encoding="utf
     line_count = 0
     for row in csv_reader:
         if line_count == 0:
-            print(f'Column names are {", ".join(row)}')
             line_count += 1
         else:
             question.append(row[0])

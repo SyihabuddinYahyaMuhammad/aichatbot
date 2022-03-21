@@ -5,8 +5,18 @@
 * [Bootstrap](https://getbootstrap) - The CSS framework used
 * [SASS](https://sass-lang.com/documentation) - CSS script language
 * [Docker](https://docs.docker.com/) - Container for deployment
+* [numpy](https://numpy.org/doc/stable/), 
+  [tensorflow](https://www.tensorflow.org/overview), and 
+  [pickle](https://docs.python.org/3/library/pickle.html) - 
+  training data(AI)
+
 
 ## Deployment
+change model(run if you just change the database)
+```
+python train.py
+```
+deploy server
 ```
 docker-compose up
 ```

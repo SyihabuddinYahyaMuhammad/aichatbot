@@ -7,6 +7,7 @@ import asyncio
 import random
 import string
 from bot import getAproximateAnswer
+from bot_ai import getAiAnswer
 
 
 
@@ -22,7 +23,8 @@ def balesanBot(chat):
     if chat.lower() == "help":
         return "Masukkan pertanyaan, dan bot akan berusaha menjawab"
     else:
-        return getAproximateAnswer(chat)
+        # return getAproximateAnswer(chat)
+        return getAiAnswer(chat)
 
 def get_random_string():
     # choose from all lowercase letter
