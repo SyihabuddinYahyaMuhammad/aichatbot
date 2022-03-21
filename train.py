@@ -18,7 +18,7 @@ from sklearn.preprocessing import LabelEncoder
 # In[2]:
 
 
-with open('database/intents.json') as file:
+with open('src/database/intents.json') as file:
     data = json.load(file)
 
 
@@ -96,16 +96,16 @@ history = model.fit(padded_sequences, np.array(training_labels), epochs=epochs)
 
 
 # saving model
-model.save("chat_model")
+model.save("src/chat_model")
 
 import pickle
 
 # saving tokenizer
-with open('database/tokenizer.pickle', 'wb') as handle:
+with open('src/database/tokenizer.pickle', 'wb') as handle:
     pickle.dump(tokenizer, handle, protocol=pickle.HIGHEST_PROTOCOL)
     
 
 # saving label encoder
-with open('database/label_encoder.pickle', 'wb') as ecn_file:
+with open('src/database/label_encoder.pickle', 'wb') as ecn_file:
     pickle.dump(lbl_encoder, ecn_file, protocol=pickle.HIGHEST_PROTOCOL)
 
