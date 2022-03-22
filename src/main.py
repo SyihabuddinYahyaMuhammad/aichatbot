@@ -6,7 +6,6 @@ from typing import Optional
 import asyncio
 import random
 import string
-from bot import getAproximateAnswer
 from bot_ai import getAiAnswer
 
 
@@ -20,11 +19,7 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
 
 def balesanBot(chat):
-    if chat.lower() == "help":
-        return "Masukkan pertanyaan, dan bot akan berusaha menjawab"
-    else:
-        # return getAproximateAnswer(chat)
-        return getAiAnswer(chat)
+    return getAiAnswer(chat)
 
 def get_random_string():
     # choose from all lowercase letter
