@@ -2,7 +2,7 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>Prosa Entrance Bot</title>
+  <title>Simple AI Chatbot</title>
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css'>
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.2/iconfont/material-icons.min.css'><link rel="stylesheet" href="{{ url_for('static', path='/style.css') }}">
 </head>
@@ -13,8 +13,8 @@
         <!-- Sebelah kanan (profile bot)-->
         <div class="col-md-4 border-right">
           <div style="position: sticky; top: 0;">
-              <img class="prosa-bot-image" src="{{ url_for('static', path='/logo_prosa_ai.png') }}" alt="Prosa img">
-              <p class = "text-center"><br>Prosa Entrance Bot<br> send Help to see command</p>
+              <img class="bot-image" src="{{ url_for('static', path='/logo.png') }}" alt="Bot img">
+              <p class = "text-center"><br>AI Chatbot<br> send Help to see command</p>
           </div>
         </div>
         <!-- Sebelah kiri (chat room)/chatbox-->
@@ -50,7 +50,7 @@
         input.value = ''
         event.preventDefault()
     }
-    createBotChatBox("Welcome to Prosa Entrance Bot!");
+    createBotChatBox("Welcome to Simple AI Chatbot!");
   </script>
 
 </body>

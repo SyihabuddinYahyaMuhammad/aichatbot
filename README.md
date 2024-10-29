@@ -1,4 +1,4 @@
-# Simple Chatbot for Prosa Entrance Test
+# Simple AI Chatbot
 
 ## Requirement
 have docker installed
@@ -32,4 +32,4 @@ chatbot can be accessed at: http://localhost:8000/
 * [Sample for ChatBot](https://www.kaggle.com/code/himanshu01dadhich/sample-for-chatbot) - [data](https://www.kaggle.com/code/himanshu01dadhich/sample-for-chatbot/data?select=intents.json)
 
 ## Authors
-**Syihabuddin Yahya Muhammad** - *13519149* - [LastAeon](https://github.com/LastAeon)
+**Syihabuddin Yahya Muhammad**  - [LastAeon](https://github.com/LastAeon), [SyihabuddinYahyaMuhammad](https://github.com/SyihabuddinYahyaMuhammad)
