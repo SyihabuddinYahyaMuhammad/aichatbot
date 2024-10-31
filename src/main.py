@@ -6,20 +6,63 @@ from typing import Optional
 import asyncio
 import random
 import string
-from bot_ai import getAiAnswer
+import os
+import logging
+import requests
 
 
+logger = logging.getLogger('uvicorn.error')
+logger.setLevel(logging.DEBUG)
 
 app = FastAPI()
 chat = []
 afkTime = 300
 tokenId = "admin"
+OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
 
 def balesanBot(chat):
-    return getAiAnswer(chat)
+    # logger.debug("OPENROUTER_API_KEY: " + OPENROUTER_API_KEY)
+    headers = {
+        "Authorization": f"Bearer {OPENROUTER_API_KEY}",
+        "HTTP-Referer": "http://localhost:8000",
+        "X-Title": "AI Chat App",
+        "Content-Type": "application/json"
+    }
+
+    payload = {
+        "model": "meta-llama/llama-3.2-3b-instruct:free",
+        "messages": [{"role": "user", "content": chat}],
+        "top_p": 1,
+        "temperature": 0.7,
+        "frequency_penalty": 0,
+        "presence_penalty": 0,
+        "repetition_penalty": 1,
+        "top_k": 0
+    }
+    try:
+        response = requests.post(
+            "https://openrouter.ai/api/v1/chat/completions",
+            headers=headers,
+            json=payload
+        )
+
+        if response.status_code == 200:
+            result = response.json()
+            logger.debug("result:", result)
+            return result["choices"][0]["message"]["content"]
+        else:
+            error_detail = response.text()
+            logger.debug(
+                f"API Error Details: {error_detail}"
+            )
+            return "Something Wrong with the API"
+
+    except Exception as e:
+        logger.debug(f"Unexpected Error: {str(e)}")
+        return "Something Wrong!"
 
 def get_random_string():
     # choose from all lowercase letter

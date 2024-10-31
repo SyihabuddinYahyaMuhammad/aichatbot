@@ -2,7 +2,5 @@ fastapi
 uvicorn[standard]
 asyncio
 jinja2
-nltk
-numpy
-scikit_learn
-tensorflow
+requests
+logging
